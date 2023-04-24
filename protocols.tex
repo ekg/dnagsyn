@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+
+% Load the 'helvet' package to set Helvetica as the default sans-serif font
+\usepackage{helvet}
+
+% Set the default font family to sans-serif
+\renewcommand{\familydefault}{\sfdefault}
+
+% Load the 'geometry' package to adjust page margins
+\usepackage[a4paper, margin=1in]{geometry}
+
+\begin{document}
+
+\title{GFET-modulated enzymatic DNA synthesis}
+
+\author{Erik Garrison}
+\date{April 2023}
+\maketitle
+
+\section*{Introduction}
+
+This is a description of a set of protocols that can be run on a graphene field effect transistor or GFET system.
+We will be investigating if we can influence the behavior of a transferase enzyme that attaches new nucleotides to the 3' end of a single-stranded DNA molecule.
+These terminal deoxynucleotidyl transferase (TdT) enzymes are used to achieve very low synthesis costs, but they are promiscuous and can't easily be controlled or made specific in their activity, so they are usually engaged in the context of a microfluidic platform.
+
+We believe that by changing the effective isolectric point of single-stranded DNA bound to the GFET, we should be able to block interaction between the TdT and the DNA sequence.
+In theory, this would allow for sequence-specific patterning of single DNA molecules on an array of GFETs exposed to a flow of TdT+dNTPs.
+To test this, we want to build a simple system that focuses on synthesis of a single pattern on a collection of GFETs.
+
+\subsection*{System setup}
+
+Our target system for testing is the S20 or S21 from Graphenea.
+These are graphene field effect transistor chips that have a number of distinct graphene channels.
+Both chips are modulated by a single liquid gate electrode.
+These are either linked into the same source and drain connections (S21) or have separate sensing of pairs of GFETs (S20).
+We plan to modify the Graphenea cartridge system which is used to hold these chips during biological sensing applications.
+The Graphenea cartridge allows for liquid measurements using these passivated GFETs and includes a breakout board with connectors for attachment to source/measure devices.
+
+Hypothetically, we would replace the liquid manifold that they have, which allows only input of a sample, with one that is capable of inducing a flow across the graphene field effect transistor channels.
+The objective of this is to enable tests of serial application of different reactants to the GFET channels under different electrostatic configurations.
+The basic idea is that enzymatic DNA synthesis can be modulated, or that is turned on and off using different electrical states at the GFET channel-liquid interface.
+In principle, this could be modulated by changing the liquid gate voltage.
+This would affect all of the GFETs on these chips simultaneously.
+Potentially, we could also envision modifying channel voltages in order to invoke the same kind of result.
+
+\subsection*{Considerations}
+
+The liquid gate voltage range is limited by the voltage of water electrolysis, which occurs at around 1.5 volts.
+In later practice, we may use a back-gated GFET system, but there are no commercial platforms which are suitable.
+The goal with this initial work is to test the feasibility of guiding enzymatic DNA synthesis using electrical inputs.
+This means that we will be simulating the kinds of effects that we would see on single GFETs in a parallel setting under a macroscopic flow or flood context.
+We would like to measure if enzymatic synthesis can be blocked by setting a particular global electrostatic state, and also for what states enzymatic synthesis can proceed.
+We might also attempt to enable the incorporation of only certain DNA bases out of a flow that may include a series of different DNA bases as reagents that flow across the surface of the chip.
+
+\section*{Protocol 1: Can enzymatic DNA synthesis be modulated?}
+
+Our first protocol tests if enzymatic DNA synthesis can be modulated at all.
+We would first functionalize the graphene channel surface with single-stranded DNA template molecules.
+Subsequently, we would fix a specific voltage on either the liquid gate or on the channels themselves.
+We would then flow across reagents, perhaps a series of TdT+dNTPs of alternating DNA bases.
+Finally, we would apply an enzymatic cleavage step that would target a sequence found in the single-stranded DNA templates to cleave the created molecules from the graphene channels.
+We would collect this particular wash for analysis with capillary electrophoresis or nanopore sequencing.
+The output would be the length distribution of the synthesized DNA molecules.
+
+If we can completely block synthesis, then we would expect to be able to observe this here, as all molecules would be just the fragment of the DNA template molecules downstream of the restriction site.
+We should also be able to obtain a positive control that enzymatic synthesis can progress by running the system in a neutral electrical configuration.
+
+\section*{Protocol 2: Specifying the order of incorporated DNA bases}
+
+If we can obtain positive results on the previous test, then we might think about implementing specific patterns of DNA bases that are a subset the total ordered flow of DNA bases.
+For instance, our flow might be A, T, G, C, and so on with a wash between each one.
+But if we can configure the GFETs electrically to prevent synthesis during all but one of the bases in each set, we should be able to write specific sequences.
+For example, even if the flow has all bases in it, we could in theory create DNA sequences that just had A homopolymers or T homopolymers, or which were GCGCGC repeats, and so on.
+In effect, this protocol is very similar to the previous one, but instead of just having perhaps a single DNA base or single setting of the electrical state on the GFETs, we would be modulating that to match the flow in particular that's being made.
+
+The overall process is the same as in Protocol 1.
+We would proceed until such a point that we decided to stop the reaction and at that point we would use an enzyme to cleave the synthesized products from the surface of the GFET.
+We would collect the wash from the final step and then analyze that to see how well we did.
+In this case we might apply both capillary electrophoresis and DNA sequencing to be sure that we've synthesized the correct molecules.
+
+
+\end{document}
