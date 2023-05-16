@@ -3,6 +3,9 @@
 % Load the 'helvet' package to set Helvetica as the default sans-serif font
 \usepackage{helvet}
 
+\usepackage{enumitem}
+\setlist{nosep} % reduce space between items globally
+
 % Set the default font family to sans-serif
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -14,8 +17,10 @@
 \title{GFET-modulated enzymatic DNA synthesis}
 
 \author{Erik Garrison}
-\date{April 2023}
+%\date{April 2023}
 \maketitle
+
+%\today
 
 \section*{Introduction}
 
@@ -65,6 +70,25 @@ The output would be the length distribution of the synthesized DNA molecules.
 If we can completely block synthesis, then we would expect to be able to observe this here, as all molecules would be just the fragment of the DNA template molecules downstream of the restriction site.
 We should also be able to obtain a positive control that enzymatic synthesis can progress by running the system in a neutral electrical configuration.
 
+\subsection*{Protocol 1 Steps}
+\begin{enumerate}
+    \item Start by functionalizing the graphene channel surface with single-stranded DNA template molecules.
+    \begin{enumerate} %[i.]
+        \item Functionalize the graphene channel surface with pyrenebutyric acid N-hydroxysuccinimide ester (PBASE) via $\pi$-$\pi$ stacking.
+        \item Introduce single-stranded DNA molecules that have been modified to contain a single amine group at the 5’ end. The amine group forms an amide bond with the carboxyl group of a surface-functionalized PBASE molecule, resulting in stably end-tethered DNA molecules.
+        \item Rinse the chip with a buffer solution to wash away non-specific, weakly adsorbed DNA molecules.
+    \end{enumerate}
+    \item Set a specific voltage on either the liquid gate or on the channels themselves using the source measure unit (SMU). Start with a lower voltage and gradually increase, staying within the safe range of up to 1.2V.
+    \item Flow an alternating sequence of A, T, G, C across the chip surface. Use approximately 50µL of each base and ensure that the channels leading up to the chip surface are properly flushed.
+    \item Incubate the system for a duration that optimizes the enzymatic synthesis. The time period could vary between 1 to 10 minutes.
+    \item Apply an enzymatic cleavage step using EcoRI.
+    \begin{enumerate} %[i.]
+        \item Add the ssDNA primer complimentary to the sequence and the EcoRI as a single mix.
+        \item Incubate the system to allow the enzyme to cleave the synthesized products from the surface of the GFET.
+    \end{enumerate}
+    \item Collect the wash from this final step (approximately 50-100µL) and analyze it using capillary electrophoresis or nanopore sequencing to observe the length distribution of the synthesized DNA molecules.
+\end{enumerate}
+
 \section*{Protocol 2: Specifying the order of incorporated DNA bases}
 
 If we can obtain positive results on the previous test, then we might think about implementing specific patterns of DNA bases that are a subset the total ordered flow of DNA bases.
@@ -78,5 +102,35 @@ We would proceed until such a point that we decided to stop the reaction and at 
 We would collect the wash from the final step and then analyze that to see how well we did.
 In this case we might apply both capillary electrophoresis and DNA sequencing to be sure that we've synthesized the correct molecules.
 
+\subsection*{Protocol 2 Steps}
+\begin{enumerate}
+    \item Follow steps 1-2 from Protocol 1.
+    \item Flow a cyclic sequence of A, T, G, C across the chip surface. Use approximately 50µL of each base.
+    \item Modulate the electrical state on the GFETs to match the flow using a programmable source measure unit (SMU). The state should prevent synthesis during all but one of the bases in each set.
+    \item Incubate the system for a duration that optimizes the enzymatic synthesis. The time period could vary between 1 to 10 minutes.
+    \item After incubation, apply an enzymatic cleavage step using EcoRI.
+    \begin{enumerate} %[i.]
+        \item Add the ssDNA primer complimentary to the sequence and the EcoRI as a single mix.
+        \item Incubate the system to allow the enzyme to cleave the synthesized products from the surface of the GFET.
+    \end{enumerate}
+    \item Collect the wash from this final step (approximately 50-100µL). Analyze the wash using capillary electrophoresis and DNA
+\end{enumerate}
+
+\section*{Reagents Required for Protocols}
+
+We require at least 8 separate reagents for these protocols.
+
+\begin{enumerate}
+    \item Single-stranded DNA template molecules with a 5' amine group and a recognition site for EcoRI.
+    \item Pyrenebutyric acid N-hydroxysuccinimide ester (PBASE).
+    \item Buffer solution for rinsing the chip and for dilution of reagents as required.
+    \item Deoxynucleotide triphosphates (dNTPs): dATP, dTTP, dGTP, and dCTP.
+    \item Terminal deoxynucleotidyl transferase (TdT).
+    \item EcoRI restriction enzyme.
+    \item Single-stranded DNA primer complementary to the recognition site for EcoRI.
+\end{enumerate}
+
+For flexibility, we suggest the system maintain at least 10 reservoirs.
+Perhaps 12 would be a safe target.
 
 \end{document}
