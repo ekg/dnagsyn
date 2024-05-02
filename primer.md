@@ -7,28 +7,27 @@ This lets us cut the DNA in a lot of places.
 Cutting with type IIS endonucleases like FokI, Esp3I (BsmBI), and Eco31I (BsaI) will cleave anything we've added onto the 3' end of the molecule, and will work on ssDNA.
 
 ```txt
-5' GATTACACAGGCAAGCTTGGGATGTAGGTCTTAACTCGTCTCTGGTCTCA 3'
+5' GATTACACAGGCAAGCTTAGGATGTAGGTCTTAACTCGTCTCTGGTCTCA 3'
    |-----| |-| |----| |---| |-| |----| |----| |----|
-   GATTACA NGG AAGCTT GGATG NGG CTTAAG CGTCTC GGTCTC #<-- cuts after end of oligo 
-           PAM Hind3  FokI  PAM ECoRI  Esp3I  Eco31I
+   GATTACA NGG AAGCTT GGATG NGG CTTAAC CGTCTC GGTCTC #<-- cuts after end of oligo 
+           PAM Hind3  FokI  PAM spacer Esp3I  Eco31I
               |---20bp Guide 1---|
                                |---20bp Guide 2---|
 ```
 
-I manually filled in the Ns to balance sequence composition and avoid any △G-favorable folds:
+I manually filled in the gaps to balance sequence composition and avoid any △G-favorable folds.
+The spacer is a near match for EcoRI (CTTAAG), but I couldn't get a positive Gibbs free energy fold without modifying it.
 
 ```bash
-x=GATTACANNGGNAAGCTTNGGATGNNGGNCTTAAGNCGTCTCNGGTCTCN; s=GATTACACAGGCAAGCTTGGGATGTAGGTCTTAACTCGTCTCTGGTCTCA; echo $x; echo $s; echo $s | RNAfold -P DNA; echo $s | awk '{print "A:", gsub(/A/,"A"), "T:", gsub(/T/,"T"), "G:", gsub(/G/,"G"), "C:", gsub(/C/,"C"), "N:", gsub(/N/,"N")}'
-GATTACANNGGNAAGCTTNGGATGNNGGNCTTAAGNCGTCTCNGGTCTCN
-GATTACACAGGCAAGCTTGGGATGTAGGTCTTAACTCGTCTCTGGTCTCA
+s=GATTACACAGGCAAGCTTAGGATGTAGGTCTTAACTCGTCTCTGGTCTCA; echo $s; echo $s | RNAfold -P DNA; echo $s | awk '{print "A:", gsub(/A/,"A"), "T:", gsub(/T/,"T"), "G:", gsub(/G/,"G"), "C:", gsub(/C/,"C"), "N:", gsub(/N/,"N")}' 
+GATTACACAGGCAAGCTTAGGATGTAGGTCTTAACTCGTCTCTGGTCTCA
 WARNING: stacking enthalpies not symmetric
 WARNING: stacking enthalpies not symmetric
 WARNING: stacking enthalpies not symmetric
 WARNING: stacking enthalpies not symmetric
-GAUUACACAGGCAAGCUUGGGAUGUAGGUCUUAACUCGUCUCUGGUCUCA
+GAUUACACAGGCAAGCUUAGGAUGUAGGUCUUAACUCGUCUCUGGUCUCA
 .................................................. (  0.00)
-A: 11 T: 15 G: 13 C: 11 N: 0
+A: 12 T: 15 G: 12 C: 11 N: 0
 ```
 
-I'm not sure about the warnings but this is better than the first iteration I ran which had a △G of -10 and was very likely to form a hairpin.
-The idea here is that the DNA should be basically linear with little internal interaction to reduce binding efficiency of whatever we throw at it.
+I then put this through unafold web DNA folding. The strongest fold has Tm = 35.7 °C.
