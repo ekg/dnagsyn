@@ -31,3 +31,19 @@ A: 12 T: 15 G: 12 C: 11 N: 0
 ```
 
 I then put this through unafold web DNA folding. The strongest fold has Tm = 35.7 °C.
+
+We can get the reverse complement with this one cool trick:
+
+```bash
+echo GATTACACAGGCAAGCTTAGGATGTAGGTCTTAACTCGTCTCTGGTCTCA | rev | tr 'ATCG' 'TAGC'
+TGAGACCAGAGACGAGTTAAGACCTACATCCTAAGCTTGCCTGTGTAATC
+```
+
+It's also free of any secondary structures:
+
+```
+TGAGACCAGAGACGAGTTAAGACCTACATCCTAAGCTTGCCTGTGTAATC
+.................................................. (  0.00)
+A: 15 T: 12 G: 11 C: 12 N: 0
+```
+
