@@ -139,11 +139,11 @@ This section outlines the step-by-step protocol for functionalizing graphene wit
 
 \begin{itemize}
     \item Graphene samples (1 cm $\times$ 1 cm sheets)
-    \item Pyrenebutyric acid N-hydroxysuccinimide ester (PBASE)
+    \item Pyrenebutyric acid N-hydroxysuccinimide ester (PBASE), MW: 341.35 g/mol
     \item N,N-Dimethylformamide (DMF), anhydrous
-    \item Amine-modified single-stranded DNA (ssDNA) with a 5' amine group
+    \item Amine-modified single-stranded DNA (ssDNA) with a 5' amine group (200 nmol, sequence: GATTACACAGGCAAGCTTAGGATGTAGGTCTTAACTCGTCTCTGGTCTCA or similar length from Thermofisher)
     \item Amine-modified ssDNA with 3' fluorophore (for optional verification)
-    \item Ethanolamine, reagent grade
+    \item Ethanolamine, reagent grade, MW: 61.08 g/mol
     \item Phosphate-buffered saline (PBS) or appropriate buffer solution
     \item Deionized water
     \item Small glass vials or test tubes
@@ -153,6 +153,7 @@ This section outlines the step-by-step protocol for functionalizing graphene wit
     \item Personal protective equipment: Gloves, lab coat, safety glasses
     \item Breathable cover (optional, for protecting samples during drying)
     \item Fluorescence microscope (for optional verification step)
+    \item Analytical balance (0.1 mg precision)
 \end{itemize}
 
 \subsection*{Procedure}
@@ -160,35 +161,40 @@ This section outlines the step-by-step protocol for functionalizing graphene wit
 \begin{enumerate}
     \item \textbf{Prepare PBASE solution}
     \begin{enumerate}[label=(\alph*)]
-        \item In a small glass vial, dissolve 1 mg PBASE in 1 mL anhydrous DMF (1 mg/mL solution).
+        \item Weigh 3.4 mg PBASE (10 µmol) using an analytical balance.
+        \item In a small glass vial, dissolve the 3.4 mg PBASE in 10 mL anhydrous DMF to make a 1 mM (0.34 mg/mL) solution.
         \item Vortex or stir until PBASE is fully dissolved.
     \end{enumerate}
 
     \item \textbf{Functionalize graphene with PBASE}
     \begin{enumerate}[label=(\alph*)]
         \item Place graphene samples in a clean Petri dish inside a fume hood.
-        \item Apply 50 $\mu$L PBASE solution to each sample, ensuring full coverage.
+        \item Apply 100 $\mu$L of 1 mM PBASE solution to each sample, ensuring full coverage.
         \item Allow DMF to evaporate completely (approx. 30 minutes) at room temperature.
     \end{enumerate}
 
-    \item \textbf{Attach amine-modified ssDNA}
+    \item \textbf{Prepare and attach amine-modified ssDNA}
     \begin{enumerate}[label=(\alph*)]
-        \item Prepare 10 $\mu$M amine-modified ssDNA solution in PBS.
-        \item Apply 50 $\mu$L ssDNA solution to each PBASE-functionalized sample.
+        \item Dissolve the 200 nmol of amine-modified ssDNA in 2 mL PBS to make a 100 µM stock solution.
+        \item Dilute 100 µL of the 100 µM stock solution with 900 µL PBS to prepare 1 mL of 10 µM working solution.
+        \item Apply 50 $\mu$L of the 10 µM ssDNA solution to each PBASE-functionalized sample.
         \item Incubate at room temperature for 2 hours.
     \end{enumerate}
 
     \item \textbf{Block unreacted NHS ester groups}
     \begin{enumerate}[label=(\alph*)]
-        \item Prepare 50 mM ethanolamine solution in PBS.
+        \item Prepare 50 mM ethanolamine solution in PBS:
+        \begin{itemize}
+            \item Add 30.5 µL of ethanolamine to 10 mL of PBS.
+        \end{itemize}
         \item Gently rinse samples with PBS to remove unbound ssDNA.
-        \item Apply 50 $\mu$L ethanolamine solution to each sample.
+        \item Apply 100 $\mu$L ethanolamine solution to each sample.
         \item Incubate at room temperature for 30 minutes.
     \end{enumerate}
 
     \item \textbf{Wash and dry samples}
     \begin{enumerate}[label=(\alph*)]
-        \item Rinse samples thoroughly with PBS, then with deionized water.
+        \item Rinse samples thoroughly with PBS (3 times, 1 mL each), then with deionized water (3 times, 1 mL each).
         \item Allow samples to air dry naturally inside the fume hood:
         \begin{itemize}
             \item Leave samples undisturbed until all visible moisture has evaporated (approximately 30 minutes to 1 hour).
@@ -199,10 +205,18 @@ This section outlines the step-by-step protocol for functionalizing graphene wit
 
     \item \textbf{Verify functionalization (Optional)}
     \begin{enumerate}[label=(\alph*)]
-        \item Repeat steps 3-5 using amine-modified ssDNA with 3' fluorophore.
+        \item Repeat steps 3-5 using amine-modified ssDNA with 3' fluorophore, following the same concentration and volume as in step 3.
         \item Image samples using a fluorescence microscope to verify ssDNA presence.
     \end{enumerate}
 \end{enumerate}
+
+\subsection*{Notes}
+\begin{itemize}
+    \item The PBASE concentration (1 mM) is chosen to ensure sufficient coverage of the graphene surface while minimizing excess.
+    \item The ssDNA concentration (10 µM) is selected to provide an excess of DNA molecules relative to the available PBASE binding sites, promoting efficient functionalization.
+    \item Volumes applied to the graphene samples may need to be adjusted based on the exact size and absorbency of the samples.
+    \item All solutions should be prepared fresh on the day of use for optimal results.
+\end{itemize}
 
 \subsection*{Safety Considerations}
 
